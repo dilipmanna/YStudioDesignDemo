@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_dashboard">
+    <fragment
+        android:id="@+id/nav_analytics"
+        android:name="com.example.ystudio.fragments.AnalyticsFragment"
+        android:label="Analytics"
+        tools:layout="@layout/fragment_analytics" />
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.example.ystudio.fragments.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/nav_comments"
+        android:name="com.example.ystudio.fragments.CommentsFragment"
+        android:label="Comments"
+        tools:layout="@layout/fragment_comments" />
+    <fragment
+        android:id="@+id/nav_videos"
+        android:name="com.example.ystudio.fragments.VideosFragment"
+        android:label="Videos"
+        tools:layout="@layout/fragment_videos" />
+    <fragment
+        android:id="@+id/nav_playlists"
+        android:name="com.example.ystudio.fragments.PlaylistsFragment"
+        android:label="Playlists"
+        tools:layout="@layout/fragment_playlists" />
+</navigation>
