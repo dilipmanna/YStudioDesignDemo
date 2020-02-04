@@ -1,5 +1,6 @@
 package com.example.ystudio.activites
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
 
 //        val fab: FloatingActionButton = findViewById(R.id.fab)
 //        fab.setOnClickListener { view ->
@@ -61,6 +63,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+        return when(item.itemId){
+            R.id.action_commentNotification ->{
+                val intent = Intent(this,NotificationActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
+                true
+            }
+            R.id.action_account ->{
+                val intent = Intent(this,AccountActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_bottom,R.anim.slide_out_top)
+                true
+            }
+            else ->super.onOptionsItemSelected(item)
+        }
+
+
     }
 }

@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_spinner"
-        app:actionViewClass="android.widget.Spinner"
-        android:visible="true"
-        android:title="Title"
-        app:showAsAction="always"/>
-    <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="Search"

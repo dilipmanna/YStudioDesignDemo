@@ -1,17 +1,18 @@
 package com.example.ystudio.fragments
 
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ystudio.R
+import com.example.ystudio.adapters.CustomSpinnerAdapter
 import com.example.ystudio.adapters.VideoListAdapter
-import com.example.ystudio.models.VideoListModel
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_videos.*
 
 
@@ -22,11 +23,17 @@ class VideosFragment : Fragment() {
 
     //var  videoList = mutableListOf<VideoListModel>()
     var sortText:String = "Most recent"
+
+   // private var toolbar: Toolbar? = null
+
+    //private var spinner_nav: Spinner? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_videos, container, false)
     }
 
@@ -35,6 +42,7 @@ class VideosFragment : Fragment() {
 //        for ( i in 1..10){
 //            videoList.add(VideoListModel("Video Title","1,322","14","25"))
 //        }
+
 
         val layoutManager = StaggeredGridLayoutManager(1,1)
         recyclerview_videolist.layoutManager = layoutManager
@@ -76,6 +84,35 @@ class VideosFragment : Fragment() {
                 tv_video_sorting.text = textView_most_viewed.text.toString()
                 sortText = tv_video_sorting.text.toString()
                 popupWindow.dismiss()
+            }
+        }
+
+        activity?.spinner_nav?.visibility = View.VISIBLE
+        addItemsToSpinner()
+    }
+    fun addItemsToSpinner() {
+        val list = ArrayList<String>()
+        list.add("All videos")
+        list.add("Draft")
+        list.add("Public")
+        list.add("Unlisted")
+        list.add("Private")
+        // Custom ArrayAdapter with spinner item layout to set popup background
+        var spinAdapter = CustomSpinnerAdapter(context!!,list)
+        activity?.spinner_nav?.adapter = spinAdapter
+        activity?.spinner_nav?.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                adapter: AdapterView<*>, v: View,
+                position: Int, id: Long
+            ) { // On selecting a spinner item
+                spinAdapter.setSelection(position)
+                val item = adapter.getItemAtPosition(position).toString()
+                // Showing selected spinner item
+                Toast.makeText(context, "Selected  : $item", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onNothingSelected(arg0: AdapterView<*>?) {
+                Toast.makeText(context, "Please select item", Toast.LENGTH_LONG).show()
             }
         }
     }

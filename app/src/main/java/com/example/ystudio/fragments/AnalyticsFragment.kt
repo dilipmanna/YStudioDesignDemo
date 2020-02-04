@@ -4,12 +4,14 @@ package com.example.ystudio.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.ystudio.R
 import com.example.ystudio.adapters.AnalyticsViewPagerAdapder
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_analytics.*
 
 
@@ -18,6 +20,10 @@ import kotlinx.android.synthetic.main.fragment_analytics.*
  */
 class AnalyticsFragment : Fragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +37,9 @@ class AnalyticsFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
+        activity?.spinner_nav?.visibility = View.GONE
+
         val adapter = AnalyticsViewPagerAdapder(getChildFragmentManager())
         adapter.addFragment(OverviewFragment(), "OVERVIEW")
         adapter.addFragment(RevenueFragment(), "REVENUE")
@@ -40,6 +49,10 @@ class AnalyticsFragment : Fragment() {
         adapter.addFragment(AnalyticPlaylistsFragment(), "PLAYLISTS")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
+    }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu?.findItem(R.id.action_search)?.setVisible(false)
+        super.onPrepareOptionsMenu(menu)
     }
 
 
