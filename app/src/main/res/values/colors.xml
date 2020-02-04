@@ -12,4 +12,6 @@
     <color name="colorRed">#FF0000</color>
     <color name="colorGreen">#00FF00</color>
     <color name="colorBlue">#0000FF</color>
+    <color name="colorGrayDropDown">#EFEEEF</color>
+
 </resources>
