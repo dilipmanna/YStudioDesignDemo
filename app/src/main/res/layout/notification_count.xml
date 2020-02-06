@@ -7,7 +7,7 @@
     android:minHeight="28dp"
     android:background="@drawable/shape_notification"
     android:text="10"
-    android:textSize="@dimen/_12sdp"
+    android:textSize="@dimen/_10sdp"
     android:textColor="@color/colorWhite"
     android:gravity="center">
 </TextView>

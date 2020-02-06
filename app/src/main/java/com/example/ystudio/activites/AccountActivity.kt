@@ -3,6 +3,8 @@ package com.example.ystudio.activites
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ystudio.R
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -28,4 +30,7 @@ class AccountActivity : AppCompatActivity() {
         overridePendingTransition(0,R.anim.slide_out_bottom)
         super.onBackPressed()
     }
+
+
+
 }
