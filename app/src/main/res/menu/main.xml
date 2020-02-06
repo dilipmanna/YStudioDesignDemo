@@ -11,7 +11,7 @@
 
     <item
         android:id="@+id/action_commentNotification"
-        android:icon="@drawable/ic_circle"
+        app:actionLayout="@layout/notification_count"
         android:title="Notification"
         app:showAsAction="always" />
     <item

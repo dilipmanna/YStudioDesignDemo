@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
-        android:id="@+id/tv_most_recent"
+        android:id="@+id/tv_sort1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
         android:gravity="center_vertical"
@@ -13,7 +13,7 @@
         android:background="@color/colorWhite"
         android:text="Most recent"/>
     <TextView
-        android:id="@+id/tv_most_viewed"
+        android:id="@+id/tv_sort2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
         android:gravity="center_vertical"

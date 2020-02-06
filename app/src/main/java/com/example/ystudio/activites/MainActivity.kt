@@ -13,11 +13,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.TextView
 import com.example.ystudio.R
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    var notificationTextView:TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +50,27 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        notificationTextView?.setOnClickListener {
+            val intent = Intent(this,AccountActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
+        val notificationMenuView = menu.findItem(R.id.action_commentNotification).actionView
+        notificationTextView = notificationMenuView.findViewById<TextView>(R.id.notif_count)
+        notificationTextView?.setText("20")
+        notificationMenuView.setOnClickListener {
+            val intent = Intent(this,NotificationActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
+        }
+
         return true
     }
 

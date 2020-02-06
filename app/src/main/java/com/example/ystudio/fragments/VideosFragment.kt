@@ -32,8 +32,6 @@ class VideosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_videos, container, false)
     }
 
@@ -48,18 +46,21 @@ class VideosFragment : Fragment() {
         recyclerview_videolist.layoutManager = layoutManager
         recyclerview_videolist.adapter = VideoListAdapter()
 
+        tv_video_sorting.text = "Most recent"
         rl_soring.setOnClickListener {
             // Inflate a custom view using layout inflater
             val sortingPopupView = layoutInflater.inflate(R.layout.video_sort,null)
-            val textView_most_recent = sortingPopupView.findViewById<TextView>(R.id.tv_most_recent)
-            val textView_most_viewed = sortingPopupView.findViewById<TextView>(R.id.tv_most_viewed)
-            textView_most_recent.setBackgroundResource(R.color.colorWhite)
-            textView_most_viewed.setBackgroundResource(R.color.colorWhite)
+            val tv_sort1 = sortingPopupView.findViewById<TextView>(R.id.tv_sort1)
+            val tv_sort2 = sortingPopupView.findViewById<TextView>(R.id.tv_sort2)
+            tv_sort1.setText("Most recent")
+            tv_sort2.setText("Most viewed")
+            tv_sort1.setBackgroundResource(R.color.colorWhite)
+            tv_sort2.setBackgroundResource(R.color.colorWhite)
             if(sortText == "Most recent"){
-                textView_most_recent.setBackgroundResource(R.color.colorGrayDropDown)
+                tv_sort1.setBackgroundResource(R.color.colorGrayDropDown)
             }
             else{
-                textView_most_viewed.setBackgroundResource(R.color.colorGrayDropDown)
+                tv_sort2.setBackgroundResource(R.color.colorGrayDropDown)
             }
 
             val popupWindow = PopupWindow(
@@ -75,13 +76,13 @@ class VideosFragment : Fragment() {
                 -tv_video_sorting.height // Y offset
             )
 
-            textView_most_recent.setOnClickListener {
-                tv_video_sorting.text = textView_most_recent.text.toString()
+            tv_sort1.setOnClickListener {
+                tv_video_sorting.text = tv_sort1.text.toString()
                 sortText = tv_video_sorting.text.toString()
                 popupWindow.dismiss()
             }
-            textView_most_viewed.setOnClickListener {
-                tv_video_sorting.text = textView_most_viewed.text.toString()
+            tv_sort2.setOnClickListener {
+                tv_video_sorting.text = tv_sort2.text.toString()
                 sortText = tv_video_sorting.text.toString()
                 popupWindow.dismiss()
             }
@@ -108,11 +109,11 @@ class VideosFragment : Fragment() {
                 spinAdapter.setSelection(position)
                 val item = adapter.getItemAtPosition(position).toString()
                 // Showing selected spinner item
-                Toast.makeText(context, "Selected  : $item", Toast.LENGTH_LONG).show()
+                //Toast.makeText(context, "Selected  : $item", Toast.LENGTH_LONG).show()
             }
 
             override fun onNothingSelected(arg0: AdapterView<*>?) {
-                Toast.makeText(context, "Please select item", Toast.LENGTH_LONG).show()
+                //Toast.makeText(context, "Please select item", Toast.LENGTH_LONG).show()
             }
         }
     }

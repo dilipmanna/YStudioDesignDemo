@@ -9,10 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.example.ystudio.R
+import com.example.ystudio.adapters.CommentListAdapter
 import com.example.ystudio.adapters.CustomSpinnerAdapter
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.fragment_comments.*
 
 /**
  * A simple [Fragment] subclass.
@@ -40,6 +43,10 @@ class CommentsFragment : Fragment() {
 
         activity?.spinner_nav?.visibility = View.VISIBLE
         addItemsToSpinner()
+
+        val layoutManager = StaggeredGridLayoutManager(1,1)
+        recyclerview_commentlist.layoutManager = layoutManager
+        recyclerview_commentlist.adapter = CommentListAdapter()
     }
 
 
@@ -59,11 +66,11 @@ class CommentsFragment : Fragment() {
                 spinAdapter.setSelection(position)
                 val item = adapter.getItemAtPosition(position).toString()
                 // Showing selected spinner item
-                Toast.makeText(context, "Selected  : $item", Toast.LENGTH_LONG).show()
+                //Toast.makeText(context, "Selected  : $item", Toast.LENGTH_LONG).show()
             }
 
             override fun onNothingSelected(arg0: AdapterView<*>?) {
-                Toast.makeText(context, "Please select item", Toast.LENGTH_LONG).show()
+                //Toast.makeText(context, "Please select item", Toast.LENGTH_LONG).show()
             }
         }
     }

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp">
+    <ImageView
+        android:id="@+id/iv_videoThumbnil"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/colorRed"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/videopreview"
+        android:contentDescription="videoThumbnil"
+        android:scaleType="fitXY"/>
+    <TextView
+        android:id="@+id/tv_videoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_toStartOf="@id/iv_videoThumbnil"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:maxLines="2"
+        android:text="Video Title | Kotlin Tutorial| Android Tutorial | Learn Android| How to learn android with kotlin"
+        android:textSize="@dimen/_14sdp"
+        android:ellipsize="end"
+        android:textColor="@color/colorBlack"/>
+
+    <ImageView
+        android:id="@+id/iv_user"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/ic_account_circle"
+        android:layout_below="@id/tv_videoTitle"/>
+    <TextView
+        android:id="@+id/tv_userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toEndOf="@id/iv_user"
+        android:layout_below="@id/tv_videoTitle"
+        android:textSize="@dimen/_12sdp"
+        android:text="Sudeshna Dutta - 1 hour ago"/>
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toEndOf="@id/iv_user"
+        android:layout_below="@id/tv_userName"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/colorBlack"
+        android:text="I like this video very much. Thank you for uploading this type of video. I am waiting for that...Again thank you very much"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_videolikesection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_comment"
+        android:layout_toEndOf="@id/iv_user"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1.5">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_thumb_up" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/_15sdp"
+                android:text="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1.5">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_thumb_down" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1.5">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_comment" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/_15sdp"
+                android:text="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_weight="1.5">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_favorite" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/_15sdp"
+                android:text="1"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:src="@drawable/ic_more_vert" />
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBlacktrans"
+        android:layout_below="@id/ll_videolikesection"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+</RelativeLayout>
