@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        >
+        <ImageView
+            android:id="@+id/iv_user"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/ic_account_circle"/>
+        <ImageView
+            android:id="@+id/iv_videoThumbnil"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/videopreview"
+            android:contentDescription="videoThumbnil"
+            android:scaleType="fitXY"/>
+        <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/iv_videoThumbnil"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toEndOf="@id/iv_user"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:text="Jayanta Kumar Biswas"/>
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toEndOf="@id/iv_user"
+            android:layout_toStartOf="@id/iv_videoThumbnil"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_below="@id/tv_userName"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorBlack"
+            android:text="I like this video very much. Thank you for uploading this type of video. I am waiting for that...Again thank you very much"
+            android:maxLines="2"
+            android:ellipsize="end"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

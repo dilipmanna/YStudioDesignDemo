@@ -9,7 +9,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ystudio.R
+import com.example.ystudio.adapters.NotificationListAdapter
+import kotlinx.android.synthetic.main.activity_notification.*
 
 
 class NotificationActivity : AppCompatActivity() {
@@ -22,6 +25,11 @@ class NotificationActivity : AppCompatActivity() {
         setTitle("Notification")
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
        // getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.ic_analytics);
+
+
+        val layoutManager = StaggeredGridLayoutManager(1,1)
+        recycleview_notification.layoutManager = layoutManager
+        recycleview_notification.adapter = NotificationListAdapter()
     }
 
     override fun onSupportNavigateUp(): Boolean {
