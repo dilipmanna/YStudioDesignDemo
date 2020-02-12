@@ -1,6 +1,7 @@
 package com.example.ystudio.adapters
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,6 @@ class CustomSpinnerAdapter(context: Context, private val items:List<String>) :Ar
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
         return createViewFromResource(position, convertView, parent)
-
     }
 
     fun setSelection(position: Int) {

@@ -40,7 +40,7 @@ class NotificationListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
             when(position){
                 0->myViewHolderHeader.tv_notification_header.setText("Today")
                 6->myViewHolderHeader.tv_notification_header.setText("Yesterday")
-                11->myViewHolderHeader.tv_notification_header.setText("This Month")
+                12->myViewHolderHeader.tv_notification_header.setText("This Month")
             }
         }
         else
