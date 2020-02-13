@@ -71,10 +71,10 @@ class MainActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
         }
 
+
+
         return true
     }
-
-
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
@@ -97,7 +97,5 @@ class MainActivity : AppCompatActivity() {
             }
             else ->super.onOptionsItemSelected(item)
         }
-
-
     }
 }

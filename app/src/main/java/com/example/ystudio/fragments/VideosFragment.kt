@@ -1,12 +1,17 @@
 package com.example.ystudio.fragments
 
 
+import android.app.SearchManager
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ystudio.R
@@ -24,9 +29,10 @@ class VideosFragment : Fragment() {
     //var  videoList = mutableListOf<VideoListModel>()
     var sortText:String = "Most recent"
 
-   // private var toolbar: Toolbar? = null
-
-    //private var spinner_nav: Spinner? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -117,5 +123,73 @@ class VideosFragment : Fragment() {
             }
         }
     }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when(item.itemId){
+            R.id.action_search ->{
+               // activity?.
+                true
+            }
+            else ->super.onOptionsItemSelected(item)
+        }
+
+        //return super.onOptionsItemSelected(item)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchManager =
+            activity!!.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = "Search videos..."
+        if (searchItem is MenuItem) {
+            searchItem.setOnActionExpandListener(object :
+                MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
+                    (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+                    menu.forEach { menuitem->
+                        if (menuitem !== p0) menuitem.setVisible(false)
+                    }
+                    return true
+                }
+                override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
+                    (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimary,context?.theme)))
+                    activity?.invalidateOptionsMenu()
+                    return true
+                }
+            })
+        }
+
+
+        //searchView.setBackgroundResource(R.drawable.bg_white_background)
+
+        val editext  = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        editext.setTextColor(Color.BLACK)
+        editext.setHintTextColor(Color.GRAY)
+        val searchClose = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
+        searchClose.setColorFilter(Color.argb(255, 0, 0, 0))
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity()?.getComponentName()))
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                searchView.setQuery("",false)
+                searchItem.collapseActionView()
+                Toast.makeText(context,"Looking for $query",Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Toast.makeText(context,"Looking for $newText",Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+        })
+    }
+
+
 
 }

@@ -1,14 +1,17 @@
 package com.example.ystudio.fragments
 
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.forEach
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.example.ystudio.R
@@ -22,6 +25,10 @@ import kotlinx.android.synthetic.main.fragment_playlists.*
 class PlaylistsFragment : Fragment() {
 
     var sortText:String = "Time created"
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,6 +85,48 @@ class PlaylistsFragment : Fragment() {
                 popupWindow.dismiss()
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchManager =
+            activity!!.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = "Search playlist..."
+        if (searchItem is MenuItem) {
+            searchItem.setOnActionExpandListener(object :
+                MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
+                    menu.forEach { menuitem->
+                        if (menuitem !== p0) menuitem.setVisible(false)
+                    }
+                    return true
+                }
+                override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
+                    activity?.invalidateOptionsMenu()
+                    return true
+                }
+            })
+        }
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity()?.getComponentName()))
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                searchView.setQuery("",false)
+                searchItem.collapseActionView()
+                Toast.makeText(context,"Looking for $query",Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Toast.makeText(context,"Looking for $newText",Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+        })
     }
 
 
