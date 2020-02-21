@@ -144,18 +144,25 @@ class VideosFragment : Fragment() {
         val searchManager =
             activity!!.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = searchItem.actionView as SearchView
+
+        val searchBar = searchView.findViewById<View>(R.id.search_bar) as LinearLayout
+        //searchBar.layoutTransition = LayoutTransition()
+
         searchView.queryHint = "Search videos..."
         if (searchItem is MenuItem) {
             searchItem.setOnActionExpandListener(object :
                 MenuItem.OnActionExpandListener {
                 override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
+                    // background color change
                     (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+                    // hide others menu item
                     menu.forEach { menuitem->
                         if (menuitem !== p0) menuitem.setVisible(false)
                     }
                     return true
                 }
                 override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
+                    // background back to as theme background
                     (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimary,context?.theme)))
                     activity?.invalidateOptionsMenu()
                     return true

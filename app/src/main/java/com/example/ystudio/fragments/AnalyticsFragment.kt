@@ -37,7 +37,6 @@ class AnalyticsFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        super.onViewCreated(view, savedInstanceState)
         activity?.spinner_nav?.visibility = View.GONE
 
         val adapter = AnalyticsViewPagerAdapder(getChildFragmentManager())
